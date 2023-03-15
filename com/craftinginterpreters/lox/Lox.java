@@ -38,7 +38,7 @@ private static void runPrompt () throws IOException {
 }
 private static void run(String source) {
   Scanner scanner = new Scanner(source);
-  List<Token> tokens = scanner.scanTokens();
+  List<Token> tokens = scanner.tokens();
 
   // For now, just print tokens.
   for (Token token : tokens) {
@@ -91,6 +91,27 @@ enum TokenType {
   AND, CLASS, ELSE, FALSE, FUN, FOR, IF, NIL, OR, 
   PRINT, RETURN, SUPER, THIS, TRUE, VAR, WHILE,
   EOF
+}
+
+package com.craftinginterpreters.lox;
+
+class Token {
+  final TokenType type;
+  final String lexeme;
+  final Object literal;
+  final int line;
+
+  Token(TokenType type, String lexeme, Object literal int
+  line) {
+    this.type = type;
+    this.lexeme =lexeme;
+    this.line = literal;
+    this.line = line;
+  }
+
+  public String toString() {
+    return type + " " + lexeme + " " + literal;
+  }
 }
 
 
