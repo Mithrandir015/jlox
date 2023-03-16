@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Lox {
+  static boolean hadError = false;
+
   public static void main(String[] args) throws IOException {
     // if (args.length > 1) {
     //   System.out.println("Usage: jlox [script]");
@@ -21,12 +23,17 @@ public class Lox {
     // }
   }
 
-  private static void runFile (String path) throws IOException {
-  byte[] bytes = Files.readAllBytes(Paths.get(path) );
-  run (new String(bytes, Charset.defaultCharset()));
+  private static void runFile(String path) throws 
+IOException {
+       byte[] bytes = Files.readAllBytes(Paths.get(path) );
+      run (new String(bytes, Charset.defaultCharset()));
+      // Indicate an error in the exit code.
+      if (hadError) System.exit(65);
 }
-private static void runPrompt () throws IOException {
-  InputStreamReader input= new InputStreamReader (System.in);
+
+private static void runPrompt() throws IOException {
+  InputStreamReader input= new 
+  InputStreamReader (System.in);
   BufferedReader reader = new BufferedReader(input);
 
   for (;;) {
@@ -34,11 +41,12 @@ private static void runPrompt () throws IOException {
     String line = reader.readLine();
     if (line == null) break;
     run(line);
+    hadError = false;
   }
 }
 private static void run(String source) {
   Scanner scanner = new Scanner(source);
-  List<Token> tokens = scanner.tokens();
+  List<Token> tokens = scanner.scanTokens();
 
   // For now, just print tokens.
   for (Token token : tokens) {
@@ -55,64 +63,11 @@ private static void report(int line, String where,
   System.err.println(
   "[line] " + line + "] Error" + where + ":" +
   message);
-       hadError = true;
  }
 
- public class Lox {
-  static boolean hadError = false;
-
-run(new String(bytes, Charset.defaultCharset()));
-
-//Indicate an error in the exit code.
- if (hadError) System.exit(65);
- }
- run(line);
- hadError = false;
-}
-var language = "lox";
-
-package com.craftinginterpreters.lox;
-
-enum TokenType {
-  // Single-character tokens.
-  LEFT_PAREN, RIGHT_PAREN, LEFT_BRACE, RIGHT_BRACE, 
-  COMMA, DOT, MINUS, PLUS, SEMICOLON, SLASH, STAR,
-
-  // One or two character tokens.
-  BANG, BANG_EQUAL,
-  EQUAL, EQUAL_EQUAL,
-  GREATER, GREATER_EQUAL,
-  LESS, LESS_EQUAL,
-
-  // Literals.
-  IDENTFIER, STRING, NUMBER,
-
-  // Keywords.
-  AND, CLASS, ELSE, FALSE, FUN, FOR, IF, NIL, OR, 
-  PRINT, RETURN, SUPER, THIS, TRUE, VAR, WHILE,
-  EOF
 }
 
-package com.craftinginterpreters.lox;
 
-class Token {
-  final TokenType type;
-  final String lexeme;
-  final Object literal;
-  final int line;
-
-  Token(TokenType type, String lexeme, Object literal int
-  line) {
-    this.type = type;
-    this.lexeme =lexeme;
-    this.line = literal;
-    this.line = line;
-  }
-
-  public String toString() {
-    return type + " " + lexeme + " " + literal;
-  }
-}
 
 
                         
