@@ -7,7 +7,7 @@ import java.util.List;
 
 public class GenerateAst {
     public static void main(String[] args) throws IOException {
-        String outputDir = "com/craftinginterpreters/Lox";
+        String outputDir = "com/craftinginterpreters/lox";
         
         defineAst(outputDir, "Expr", Arrays.asList(
             "Binary  :Expr left, Token operator, Expr
@@ -17,7 +17,7 @@ public class GenerateAst {
             "Unary   : Token operator, Expr right"
         ));
     }
-}
+
 
 private static void defineAst(
     String outputDir, String baseName, List<String> types)
@@ -107,6 +107,7 @@ private static void defineVisitor(
         writer.println("  }");
     }
 }
+
 
 
     
