@@ -58,7 +58,7 @@ private static void defineAst(
     private static void defineType(
         PrintWriter writer, String baseName,
         String className, String fieldList) {
-        writer.println(" static class" + className +"
+        writer.println(" static class" + className + "
         extends " +
             baseName + " {");
         
@@ -110,7 +110,8 @@ private static void defineVisitor(
 
         writer.println("  }");
     }
+}
+
 
     
-
 
