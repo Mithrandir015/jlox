@@ -7,12 +7,8 @@ import java.util.List;
 
 public class GenerateAst {
     public static void main(String[] args) throws IOException {
-        if (args.length != 1) {
-            System.err.println("Usage: generateAst <output
-    directory>");
-            System.exit(64);
-        }
-        String outputDir = args[0];
+        String outputDir = "com/craftinginterpreters/Lox";
+        
         defineAst(outputDir, "Expr", Arrays.asList(
             "Binary  :Expr left, Token operator, Expr
     right",
