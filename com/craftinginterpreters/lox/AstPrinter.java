@@ -13,7 +13,7 @@ class AstPrinter implements Expr.Visitor<String> {
 
     @Override
     public String visitGroupingExpr(Expr.Grouping expr) {
-        return parethesize("group", expr.expression);
+        return parenthesize("group", expr.expression);
     }
 
     @Override
@@ -43,9 +43,9 @@ private String parenthesize(String name, Expr...exprs) {
 public static void main(String[] args) {
     Expr expression = new Expr.Binary(
         new Expr.Unary(
-            new Token(Tokentype.MINUS, "-", null, 1),
+            new Token(TokenType.MINUS, "-", null, 1),
             new Expr.Literal(123)),
-        new Token(Tokentype.STAR, "*", null, 1),
+        new Token(TokenType.STAR, "*", null, 1),
         new Expr.Grouping(
             new Expr.Literal(45.67)));
 
