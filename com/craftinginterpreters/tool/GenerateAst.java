@@ -9,15 +9,13 @@ public class GenerateAst {
     public static void main(String[] args) throws IOException {
         String outputDir = "com/craftinginterpreters/lox";
         
-        defineAst(outputDir, "Expr", Arrays.asList(
-            "Binary  :Expr left, Token operator, Expr
-    right",
+        defineAst(outputDir, "Expr", Arrays.asList (
+            "Binary  :Expr left, Token operator, Expr right",
             "Grouping: Expr expression",
             "Literal : Object value",
             "Unary   : Token operator, Expr right"
         ));
     }
-
 
 private static void defineAst(
     String outputDir, String baseName, List<String> types)
@@ -25,13 +23,11 @@ private static void defineAst(
         String path = outputDir + "/" + baseName + ".java";
         PrintWriter writer = new PrintWriter (path, "UTF-8");
 
-        writer.println("package
-    com.craftinginterpreters.lox");
+        writer.println("package com.craftinginterpreters.lox");
         writer.println();
         writer.println("import java.util.List;");
         writer.println();
-        writer.println("abstract class " + baseName +"
-    {");
+        writer.println("abstract class " + baseName + "{");
 
         defineVisitor(writer, baseName, types);
 
@@ -44,8 +40,7 @@ private static void defineAst(
 
     // The base accept() method.
     writer.println();
-    writer.println(" abstract <R> R accept(Visitor<R>
-    visitor);");
+    writer.println(" abstract <R> R accept(Visitor<R>visitor);");
 
         writer.println("}");
         writer.close();
@@ -54,8 +49,7 @@ private static void defineAst(
     private static void defineType(
         PrintWriter writer, String baseName,
         String className, String fieldList) {
-        writer.println(" static class" + className + "
-        extends " +
+        writer.println(" static class" + className + "extends " +
             baseName + " {");
         
         // Constructer
@@ -75,8 +69,7 @@ private static void defineAst(
      // Visitor pattern.
      writer.println();
      writer.println("    @Override");
-     writer.println("    <R> R accept(Vistor<R>
- visitor) {");
+     writer.println("    <R> R accept(Vistor<R>visitor) {");
      writer.println("     return visitor.visit" +
          className + baseName + "(this);");
      writer.println("   }");
