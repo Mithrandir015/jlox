@@ -59,7 +59,7 @@ private static void defineAst(
     // Store parameters in fields.
     String[] fields = fieldList.split(", ");
     for (String field : fields) {
-        String name = field.spilt(" ")[1];
+        String name = field.split(" ")[1];
         writer.println("      this." + name + " = "+
     name + ";");
     }
