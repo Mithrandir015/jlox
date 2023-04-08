@@ -23,7 +23,7 @@ private static void defineAst(
         String path = outputDir + "/" + baseName + ".java";
         PrintWriter writer = new PrintWriter (path, "UTF-8");
 
-        writer.println("package com.craftinginterpreters.lox");
+        writer.println("package com.craftinginterpreters.lox;");
         writer.println();
         writer.println("import java.util.List;");
         writer.println();
@@ -49,7 +49,7 @@ private static void defineAst(
     private static void defineType(
         PrintWriter writer, String baseName,
         String className, String fieldList) {
-        writer.println(" static class" + className + "extends " +
+        writer.println(" static class " + className + " extends " +
             baseName + " {");
         
         // Constructer
@@ -69,7 +69,7 @@ private static void defineAst(
      // Visitor pattern.
      writer.println();
      writer.println("    @Override");
-     writer.println("    <R> R accept(Vistor<R>visitor) {");
+     writer.println("    <R> R accept(Visitor<R> visitor) {");
      writer.println("     return visitor.visit" +
          className + baseName + "(this);");
      writer.println("   }");
@@ -104,4 +104,3 @@ private static void defineVisitor(
 
 
     
-
