@@ -12,9 +12,18 @@ class Parser {
     Parser(List<Token> tokens) {
         this.token = tokens;
     }
+
+    Expr parse() {
+        try {
+            return expression();
+        } catch (ParseError error) {
+        return null;
+        }
+    }
 private Expr expression() {
     return equality();
 }
+
 private Expr equality() {
     Expr expr = comparison();
 
@@ -124,13 +133,7 @@ private ParseError error(Token token, String message) {
     return new ParseError();
 
 }
-static void error(Token token, String message){
-    if (token.type == TokenType.EOF) {
-        report(token.line, " at end", message);
-    }   else {
-        report(token.line, " at '" + token.lexeme + "'", message);
-    }
-}
+
 private void synchronize() {
     advance();
     
@@ -152,13 +155,7 @@ private void synchronize() {
     advance();
     }
 }
-Expr parse() {
-    try {
-     return expression();
-    }catch (ParseError error) {
-    return null;
-    }
-}
+
 }
 
 
